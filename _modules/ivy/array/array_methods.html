@@ -582,6 +582,39 @@
 
 
 <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.pow. This method simply wraps the</span>
+<span class="sd">    function, and so the docstring for ivy.pow also applies to this method</span>
+<span class="sd">    with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        Input array or float.</span>
+<span class="sd">    other</span>
+<span class="sd">        Array or float power. Must be compatible with ``self``</span>
+<span class="sd">        (see :ref:`broadcasting`). Should have a numeric data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise sums. The returned array must have a</span>
+<span class="sd">        data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = x ** 2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([1, 4, 9])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1.2, 2.1, 3.5])</span>
+<span class="sd">    &gt;&gt;&gt; y = x ** 2.9</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([ 1.69678056,  8.59876156, 37.82660675])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span>
 
 
@@ -760,6 +793,33 @@
 
 
 <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array reverse special method variant of ivy.divide. This method simply wraps</span>
+<span class="sd">    the function, and so the docstring for ivy.divide also applies to this method</span>
+<span class="sd">    with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. Should have a numeric data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with ``self``</span>
+<span class="sd">        (see :ref:`broadcasting`). Should have a numeric data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; z = x / y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([0.25      , 0.40000001, 0.5       ])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
@@ -829,22 +889,60 @@
 
 
 <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.less. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.less</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with x1 (with Broadcasting). May have any</span>
+<span class="sd">        data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type of bool.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([6, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 3])</span>
+<span class="sd">    &gt;&gt;&gt; z = x &lt; y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([ False, True, False])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">less</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Less than or equal to</span>
+<span class="sd">    ivy.Array special method variant of ivy.less_equal. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.less_equal</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with x1 (with Broadcasting). May have any</span>
+<span class="sd">        data type.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    an array containing the element-wise results. The returned array must have a</span>
-<span class="sd">    data type of bool.</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type of bool.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([6, 2, 3])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 3])</span>
 <span class="sd">    &gt;&gt;&gt; z = x &lt;= y</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    ivy.array([ False, True, True])</span>
@@ -857,14 +955,135 @@
 
 
 <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.not_equal. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.not_equal</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with x1 (with Broadcasting). May have any</span>
+<span class="sd">        data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type of bool.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.array([1, 0, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.array([1, 0, 0, -1])</span>
+<span class="sd">    &gt;&gt;&gt; y = x1 != x2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([False, False, True, True])</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.array([1, 0, 1, 0])</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.array([0, 1, 0, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y = x1 != x2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([True, True, True, True])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">not_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.greater. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.greater</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with x1 (with Broadcasting). May have any</span>
+<span class="sd">        data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type of bool.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([6, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 3])</span>
+<span class="sd">    &gt;&gt;&gt; z = x &gt; y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([True,False,False])</span>
+<span class="sd">    With mix of :class:`ivy.Array` and :class:`ivy.Container` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[5.1, 2.3, -3.6]])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([[4.], [5.1], [6.]]),b=ivy.array([[-3.6], [6.], [7.]]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x &gt; y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[True, False, False],</span>
+<span class="sd">                      [False, False, False],</span>
+<span class="sd">                      [False, False, False]]),</span>
+<span class="sd">        b: ivy.array([[True, True, False],</span>
+<span class="sd">                      [False, False, False],</span>
+<span class="sd">                      [False, False, False]])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.greater_equal. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.bitwise_xor</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with x1 (with Broadcasting). May have any</span>
+<span class="sd">        data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type of bool.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([6, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; z = x &gt;= y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([True,False,False])</span>
+<span class="sd">    With mix of :class:`ivy.Array` and :class:`ivy.Container` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[5.1, 2.3, -3.6]])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([[4.], [5.1], [6.]]),b=ivy.array([[5.], [6.], [7.]]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x &gt;= y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[True, False, False],</span>
+<span class="sd">                      [True, False, False],</span>
+<span class="sd">                      [False, False, False]]),</span>
+<span class="sd">        b: ivy.array([[True, False, False],</span>
+<span class="sd">                      [False, False, False],</span>
+<span class="sd">                      [False, False, False]])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
@@ -897,6 +1116,45 @@
 
 
 <span class="k">def</span> <span class="fm">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array special method variant of ivy.bitwise_xor. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.bitwise_xor</span>
+<span class="sd">    also applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input array. Should have an integer or boolean data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array. Must be compatible with ``x1`` (see :ref:`broadcasting`).</span>
+<span class="sd">        Should have an integer or boolean data type.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to. It must have a shape that the</span>
+<span class="sd">        inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        an array containing the element-wise results. The returned array must have a</span>
+<span class="sd">        data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; a = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; b = ivy.array([3, 2, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y = a ^ b</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([2,0,2])</span>
+<span class="sd">    With mix of :class:`ivy.Array` and :class:`ivy.Container` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array([-67, 21]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([12, 13])</span>
+<span class="sd">    &gt;&gt;&gt; z = x ^ y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {a: ivy.array([-79, 24])}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">bitwise_xor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 
@@ -2078,6 +2336,46 @@
 <span class="sd">    &gt;&gt;&gt; z = x.atan2(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    ivy.array([ 0.785,  0.245,  3.14 , -1.57 ,  0.   ])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1.0, 2.0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([-2.0, 3.0])</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.zeros(2)</span>
+<span class="sd">    &gt;&gt;&gt; x.atan2(y, out=z)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([2.68 , 0.588])</span>
+
+<span class="sd">    &gt;&gt;&gt; nan = float(&quot;nan&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([nan, 1.0, 1.0, -1.0, -1.0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([1.0, +0, -0, +0, -0])</span>
+<span class="sd">    &gt;&gt;&gt; x.atan2(y)</span>
+<span class="sd">    ivy.array([  nan,  1.57,  1.57, -1.57, -1.57])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([+0, +0, +0, +0, -0, -0, -0, -0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([1.0, +0, -0, -1.0, 1.0, +0, -0, -1.0])</span>
+<span class="sd">    &gt;&gt;&gt; x.atan2(y)</span>
+<span class="sd">    ivy.array([0.  , 0.  , 0.  , 3.14, 0.  , 0.  , 0.  , 3.14])</span>
+
+<span class="sd">    &gt;&gt;&gt; y.atan2(x)</span>
+<span class="sd">    ivy.array([ 1.57,  0.  ,  0.  , -1.57,  1.57,  0.  ,  0.  , -1.57])</span>
+
+<span class="sd">    &gt;&gt;&gt; inf = float(&quot;infinity&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([inf, -inf, inf, inf, -inf, -inf])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([1.0, 1.0, inf, -inf, inf, -inf])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.atan2(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([ 1.57 , -1.57 ,  0.785,  2.36 , -0.785, -2.36 ])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([2.5, -1.75, 3.2, 0, -1.0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([-3.5, 2, 0, 0, 5])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.atan2(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([ 2.52 , -0.719,  1.57 ,  0.   , -0.197])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.1, 2.2, 3.3], [-4.4, -5.5, -6.6]])</span>
+<span class="sd">    &gt;&gt;&gt; y = x.atan2(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([[ 0.785,  0.785,  0.785],</span>
+<span class="sd">        [-2.36 , -2.36 , -2.36 ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -2406,7 +2704,7 @@
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([-3., 0., 3.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.zeros(3)</span>
-<span class="sd">    &gt;&gt;&gt; ivy.cos(x, out=y)</span>
+<span class="sd">    &gt;&gt;&gt; x.cos(out=y)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([-0.99,  1.  , -0.99])</span>
 
@@ -2768,6 +3066,14 @@
 <span class="sd">    ret</span>
 <span class="sd">        an array containing the element-wise results. The returned array</span>
 <span class="sd">        must have a data type of ``bool``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.greater_equal(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([False,False,False])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -2823,6 +3129,32 @@
 <span class="sd">        an array containing test results. An element ``out_i`` is ``True``</span>
 <span class="sd">        if ``self_i`` is either positive or negative infinity and ``False``</span>
 <span class="sd">        otherwise. The returned array must have a data type of ``bool``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; x.isinf()</span>
+<span class="sd">    ivy.array([False, False, False])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.1, 2.3, -3.6]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isinf()</span>
+<span class="sd">    ivy.array([[False, False, False]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[[1.1], [float(&#39;inf&#39;)], [-6.3]]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isinf()</span>
+<span class="sd">    ivy.array([[[False],[True],[False]]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[-float(&#39;inf&#39;), float(&#39;inf&#39;), 0.0]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isinf()</span>
+<span class="sd">    ivy.array([[ True, True, False]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.zeros((3, 3))</span>
+<span class="sd">    &gt;&gt;&gt; x.isinf()</span>
+<span class="sd">    ivy.array([[False, False, False],</span>
+<span class="sd">        [False, False, False],</span>
+<span class="sd">        [False, False, False]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -2847,6 +3179,38 @@
 <span class="sd">        an array containing test results. An element ``out_i`` is ``True``</span>
 <span class="sd">        if ``self_i`` is ``NaN`` and ``False`` otherwise.</span>
 <span class="sd">        The returned array should have a data type of ``bool``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([False, False, False])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.1, 2.3, -3.6]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([[False, False, False]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[[1.1], [float(&#39;inf&#39;)], [-6.3]]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([[[False],</span>
+<span class="sd">            [False],</span>
+<span class="sd">            [False]]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[-float(&#39;nan&#39;), float(&#39;nan&#39;), 0.0]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([[ True, True, False]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[-float(&#39;nan&#39;), float(&#39;inf&#39;), float(&#39;nan&#39;), 0.0]])</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([[ True, False,  True, False]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.zeros((3, 3))</span>
+<span class="sd">    &gt;&gt;&gt; x.isnan()</span>
+<span class="sd">    ivy.array([[False, False, False],</span>
+<span class="sd">        [False, False, False],</span>
+<span class="sd">        [False, False, False]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -3026,7 +3390,7 @@
 <span class="sd">    ivy.array([0.693, 1.1  , 1.39 ])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0.1 , .001 ])</span>
-<span class="sd">    &gt;&gt;&gt; x.log1p( out = x)</span>
+<span class="sd">    &gt;&gt;&gt; x.log1p(out = x)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([0.0953, 0.001 ])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3204,6 +3568,18 @@
 <span class="sd">    ret</span>
 <span class="sd">        an array containing the element-wise results.</span>
 <span class="sd">        The returned array must have a data type of ``bool``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x=ivy.array([0,1,1,0])</span>
+<span class="sd">    &gt;&gt;&gt; x.logical_not()</span>
+<span class="sd">    ivy.array([ True, False, False,  True])</span>
+
+<span class="sd">    &gt;&gt;&gt; x=ivy.array([2,0,3,9])</span>
+<span class="sd">    &gt;&gt;&gt; x.logical_not()</span>
+<span class="sd">    ivy.array([False,  True, False, False])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -3443,19 +3819,19 @@
 <span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">     &gt;&gt;&gt; x = ivy.array([2, 3 ,5, 7])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.negative(x)</span>
+<span class="sd">    &gt;&gt;&gt; y = x.negative()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([-2, -3, -5, -7])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0,-1,-0.5,2,3])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.zeros(5)</span>
-<span class="sd">    &gt;&gt;&gt; ivy.negative(x, out=y)</span>
+<span class="sd">    &gt;&gt;&gt; x.negative(out=y)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([-0. ,  1. ,  0.5, -2. , -3. ])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.1, 2.2, 3.3],</span>
 <span class="sd">    ...                [-4.4, -5.5, -6.6]])</span>
-<span class="sd">    &gt;&gt;&gt; ivy.negative(x, out=x)</span>
+<span class="sd">    &gt;&gt;&gt; x.negative(out=x)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([[ -1.1, -2.2, -3.3],</span>
 <span class="sd">    [4.4, 5.5, 6.6]])</span>
@@ -3554,19 +3930,19 @@
 <span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([2, 3 ,5, 7])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.positive(x)</span>
+<span class="sd">    &gt;&gt;&gt; y = x.positive()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([2, 3, 5, 7])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0, -1, -0.5, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.zeros(5)</span>
-<span class="sd">    &gt;&gt;&gt; ivy.positive(x, out=y)</span>
+<span class="sd">    &gt;&gt;&gt; x.positive(out=y)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([0., -1., -0.5,  2.,  3.])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.1, 2.2, 3.3],</span>
 <span class="sd">    ...                [-4.4, -5.5, -6.6]])</span>
-<span class="sd">    &gt;&gt;&gt; ivy.positive(x,out=x)</span>
+<span class="sd">    &gt;&gt;&gt; x.positive(out=x)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([[ 1.1,  2.2,  3.3],</span>
 <span class="sd">    [-4.4, -5.5, -6.6]])</span>
@@ -3605,6 +3981,21 @@
 <span class="sd">        an array containing the element-wise results.</span>
 <span class="sd">        The returned array must have a data type determined</span>
 <span class="sd">        by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = x.pow(3)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([1, 8, 27])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1.5, -0.8, 0.3])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.zeros(3)</span>
+<span class="sd">    &gt;&gt;&gt; x.pow(2, out=y)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([2.25, 0.64, 0.09])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -3842,6 +4233,20 @@
 <span class="sd">        an array containing the square of each element in ``self``.</span>
 <span class="sd">        The returned array must have a real-valued floating-point data type</span>
 <span class="sd">        determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` instance method:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; y = x.square()</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([1, 4, 9])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1.2, 2, 3.1], [-1, -2.5, -9]])</span>
+<span class="sd">    &gt;&gt;&gt; x.square(out=x)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    ivy.array([[1.44,4.,9.61],[1.,6.25,81.]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -3866,6 +4271,16 @@
 <span class="sd">        an array containing the square root of each element in ``self``.</span>
 <span class="sd">        The returned array must have a real-valued floating-point data type</span>
 <span class="sd">        determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Using :class:`ivy.Array` instance method:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.],  [3., 4.]])</span>
+<span class="sd">    &gt;&gt;&gt; y = x.sqrt()</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([[1.  , 1.41],</span>
+<span class="sd">               [1.73, 2.  ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -4227,7 +4642,7 @@
 <span class="kn">import</span> <span class="nn">abc</span>
 <span class="c1"># global</span>
 <span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
 <span class="c1"># global</span>
@@ -4414,7 +4829,7 @@
     <span class="n">padding</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NHWC&quot;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NWC&quot;</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -5711,6 +6126,79 @@
 <span class="sd">    ivy.array([0.0369, 0.2021])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="gradient"><a class="viewcode-back" href="../../../functional/ivy/experimental/gradient/gradient_array.html#ivy.array.array_methods.gradient">[docs]</a><span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">edge_order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Calculates gradient of x with respect to (w.r.t.) spacing</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        input array representing outcomes of the function</span>
+<span class="sd">        spacing</span>
+<span class="sd">        if not given, indices of x will be used</span>
+<span class="sd">        if scalar indices of x will be scaled with this value</span>
+<span class="sd">        if array gradient of x w.r.t. spacing</span>
+<span class="sd">    edge_order</span>
+<span class="sd">        1 or 2, for &#39;frist order&#39; and &#39;second order&#39; estimation</span>
+<span class="sd">        of boundary values of gradient respectively.</span>
+<span class="sd">        Note: jax supports edge_order=1 case only</span>
+<span class="sd">    axis</span>
+<span class="sd">        dimension(s) to approximate the gradient over</span>
+<span class="sd">        by default partial gradient is computed in every dimention</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Array with values computed from gradient function from</span>
+<span class="sd">        inputs</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; spacing = (ivy.array([-2., -1., 1., 4.]),)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([4., 1., 1., 16.], )</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x, spacing=spacing)</span>
+<span class="sd">    ivy.array([-3., -2.,  2.,  5.])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 2, 4, 8], [10, 20, 40, 80]])</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x)</span>
+<span class="sd">    [ivy.array([[ 9., 18., 36., 72.],</span>
+<span class="sd">       [ 9., 18., 36., 72.]]), ivy.array([[ 1. ,  1.5,  3. ,  4. ],</span>
+<span class="sd">       [10. , 15. , 30. , 40. ]])]</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 2, 4, 8], [10, 20, 40, 80]])</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x, spacing=2.0)</span>
+<span class="sd">    [ivy.array([[ 4.5,  9. , 18. , 36. ],</span>
+<span class="sd">       [ 4.5,  9. , 18. , 36. ]]), ivy.array([[ 0.5 ,  0.75,  1.5 ,  2.  ],</span>
+<span class="sd">       [ 5.  ,  7.5 , 15.  , 20.  ]])]</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 2, 4, 8], [10, 20, 40, 80]])</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x, axis=1)</span>
+<span class="sd">    ivy.array([[ 1. ,  1.5,  3. ,  4. ],</span>
+<span class="sd">       [10. , 15. , 30. , 40. ]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 2, 4, 8], [10, 20, 40, 80]])</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x, spacing=[3., 2.])</span>
+<span class="sd">    [ivy.array([[ 3.,  6., 12., 24.],</span>
+<span class="sd">       [ 3.,  6., 12., 24.]]), ivy.array([[ 0.5 ,  0.75,  1.5 ,  2.  ],</span>
+<span class="sd">       [ 5.  ,  7.5 , 15.  , 20.  ]])]</span>
+
+<span class="sd">    &gt;&gt;&gt; spacing = (ivy.array([0, 2]), ivy.array([0, 3, 6, 9]))</span>
+<span class="sd">    &gt;&gt;&gt; ivy.gradient(x, spacing=spacing)</span>
+<span class="sd">    [ivy.array([[ 4.5,  9. , 18. , 36. ],</span>
+<span class="sd">       [ 4.5,  9. , 18. , 36. ]]), ivy.array([[ 0.33333333,  0.5,  1., 1.33333333],</span>
+<span class="sd">       [ 3.33333333,  5.        , 10.        , 13.33333333]])]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">spacing</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="n">edge_order</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="msort"><a class="viewcode-back" href="../../../functional/ivy/experimental/msort/msort_array.html#ivy.array.array_methods.msort">[docs]</a><span class="k">def</span> <span class="nf">msort</span><span class="p">(</span>
@@ -9118,6 +9606,7 @@
 
 <div class="viewcode-block" id="qr"><a class="viewcode-back" href="../../../functional/ivy/linear_algebra/qr/qr_array.html#ivy.array.array_methods.qr">[docs]</a><span class="k">def</span> <span class="nf">qr</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;reduced&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]:</span>
@@ -9793,19 +10282,23 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.array([ivy.array([1,2]),ivy.native_array([3,4])])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.array([ivy.array([5,6]),ivy.array([7,8])])</span>
-<span class="sd">    &gt;&gt;&gt; x.stack([y],axis=1)</span>
-<span class="sd">    ivy.array([[1, 3, 5, 7],</span>
-<span class="sd">        [2, 4, 6, 8]])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; print(x.stack(y, axis=1))</span>
+<span class="sd">    ivy.array([[1, 5],</span>
+<span class="sd">            [2, 6]])</span>
 
 <span class="sd">    &gt;&gt;&gt; x.stack([y],axis=0)</span>
-<span class="sd">    ivy.array([[1, 2],</span>
-<span class="sd">        [3, 4],</span>
-<span class="sd">        [5, 6],</span>
-<span class="sd">        [7, 8]])</span>
+<span class="sd">    ivy.array([[[1, 2]],</span>
+<span class="sd">            [[5, 6]]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">arrays</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">arrays</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,)</span> <span class="o">+</span> <span class="n">arrays</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">]</span> <span class="o">+</span> <span class="n">arrays</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="clip"><a class="viewcode-back" href="../../../functional/ivy/manipulation/clip/clip_array.html#ivy.array.array_methods.clip">[docs]</a><span class="k">def</span> <span class="nf">clip</span><span class="p">(</span>
@@ -11590,10 +12083,11 @@
 
 <div class="viewcode-block" id="cumprod"><a class="viewcode-back" href="../../../functional/ivy/statistical/cumprod/cumprod_array.html#ivy.array.array_methods.cumprod">[docs]</a><span class="k">def</span> <span class="nf">cumprod</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">exclusive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">reverse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="o">*</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -11638,7 +12132,12 @@
 <span class="sd">               [0, 0]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="n">exclusive</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+        <span class="n">exclusive</span><span class="o">=</span><span class="n">exclusive</span><span class="p">,</span>
+        <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 
